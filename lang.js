@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
             nav_links: 'Ссылки',
             nav_soft: 'Инструменты',
             nav_contact: 'Контакт',
+            copy_success: 'Скопировано',
             anim_phrases: [{
                 p1: "Просто ",
                 p2: "создатель"
@@ -64,6 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             nav_links: 'Links',
             nav_soft: 'Soft',
             nav_contact: 'Contact',
+            copy_success: 'Copied',
             anim_phrases: [{
                 p1: "Just a ",
                 p2: "creator"
@@ -131,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const setLanguage = (lang) => {
         allLangElements.forEach(element => {
             const key = element.getAttribute('data-lang-key');
-            if (translations[lang][key]) {
+            if (translations[lang][key] && !element.classList.contains('is-copying')) {
                 element.innerHTML = translations[lang][key];
             }
         });
@@ -201,9 +203,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData(myForm);
             fetch("/", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/x-www-form-urlencoded"
-                    },
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
                     body: new URLSearchParams(formData).toString(),
                 })
                 .then(() => {
@@ -223,4 +223,38 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         contactForm.addEventListener("submit", handleSubmit);
     }
+
+    const emailAddress = 'yelfymail@gmail.com';
+    function setupCopyOnClick(buttonId) {
+        const button = document.getElementById(buttonId);
+        if (!button) return;
+
+        const originalTextContent = button.textContent;
+        const originalLangKey = button.getAttribute('data-lang-key');
+
+        button.addEventListener('click', function(event) {
+            event.preventDefault();
+            if (button.classList.contains('is-copying')) return;
+            
+            navigator.clipboard.writeText(emailAddress).then(() => {
+                const currentLang = localStorage.getItem('language') || 'ru';
+                
+                button.classList.add('is-copying');
+                button.textContent = translations[currentLang].copy_success;
+                
+                setTimeout(() => {
+                    if (originalLangKey) {
+                        button.textContent = translations[currentLang][originalLangKey];
+                    } else {
+                        button.textContent = originalTextContent;
+                    }
+                    button.classList.remove('is-copying');
+                }, 4000);
+            }).catch(err => {
+                console.error('Ошибка копирования: ', err);
+            });
+        });
+    }
+    setupCopyOnClick('copy-email-hero');
+    setupCopyOnClick('copy-email-contact');
 });
