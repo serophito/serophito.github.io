@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 p2: "not a file"
             }, ],
             hero_tagline: 'some editor',
-            hero_desc: "I dabble in editing, and it's a constant battle with perfectionism and never being satisfied with the outcome. Occasionally, I take on bigger projects to gain new experiences, and what you're seeing now is one of those times. I may disappear for a while to find motivation, inspiration, or simply to rest from it all, yet I can never seem to completely unwind. I struggle with low self-esteem, but I find that it's what keeps me pushing forward",
+            hero_desc: "I do a bit of editing, each time struggling with perfectionism and dissatisfaction with the results. Sometimes I do something bigger to get new experience, and what you see now is no exception. I might disappear to find motivation, inspiration, or just to take a break from it all, but I never manage to fully relax. I suffer from low self-esteem, but I believe this is what helps me move forward",
             hero_contacts_title: 'My contacts for getting in touch',
             hero_btn_tg: 'Telegram',
             hero_btn_ds: 'Discord',
