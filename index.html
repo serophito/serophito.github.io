@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>yelfy - Just Creator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+    </script>
+</head>
+
+<body>
+
+    <header class="site-header reveal-on-load">
+        <div class="container header-container">
+            <div class="logo">yelfyx.com</div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" data-lang-key="nav_home">Главная</a></li>
+                    <li><a href="#links" data-lang-key="nav_links">Ссылки</a></li>
+                    <li><a href="#soft" data-lang-key="nav_soft">Инструменты</a></li>
+                    <li><a href="#contact" data-lang-key="nav_contact">Контакт</a></li>
+                </ul>
+            </nav>
+            <div class="header-controls">
+                <div class="lang-switcher">
+                    <span id="lang-ru" class="active">RU</span>
+                    <span>/</span>
+                    <span id="lang-en">EN</span>
+                </div>
+                <div id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="shape-container"></div>
+            <div class="container hero-container">
+                <div class="hero-top-tagline reveal-on-load">
+                    <p class="animated-tagline">
+                        <span id="anim-part1"></span>
+                        <span id="anim-part2"></span>
+                    </p>
+                </div>
+                <div class="hero-main-content">
+                    <div class="hero-left-column reveal-on-load">
+                        <div class="avatar-area">
+                            <img src="files/avatar.jpg" alt="Yelfy Avatar">
+                        </div>
+                        <h1 class="nickname">Yelfy</h1>
+                        <p class="nickname-tagline" data-lang-key="hero_tagline"></p>
+                    </div>
+                    <div class="hero-right-column reveal-on-load">
+                        <div class="description-area">
+                            <p data-lang-key="hero_desc"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-contacts reveal-on-load">
+                    <p class="contacts-title" data-lang-key="hero_contacts_title"></p>
+                    <div class="contact-buttons-grid">
+                        <div class="contact-item">
+                            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><g transform="translate(2.4, 2.4) scale(0.8)"><path d="M20.63.31L1.13 11.55c-1.6.94-1.45 3.32.27 4.03l5.38 2.21v3.96c0 2.17 2.77 3.07 4.05 1.34l2.05-2.77 5.25 2.16c.28.12.57.17.86.17a2.84 2.84 0 002.35-1.11c.6-1.02.7-2.28.28-3.34L23.69 2.6C23.1.72 21.5-.52 19.63.3zm-11.63 21.44v-3.03l1.71.7zm9.96-1.34l-7.2-2.98L18.31 8c.5-.72-.44-1.56-1.1-.99L7.3 15.59l-5.05-2.09L21.75 2.25z"/></g></svg></div>
+                            <a href="https://t.me/yelfy" target="_blank" class="contact-btn fx-spotlight" data-lang-key="hero_btn_tg"></a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><g transform="translate(2.4, 2.4) scale(0.8)"><path d="M16.08 2.92c1.18.13 2.89.7 4.11 1.28l.49.25q.06.03.11.07l.1.09c.5.58.96 1.51 1.32 2.4c.27.68.51 1.39.69 2l.15.56c.5 1.97.79 4.3.89 6.57l.03.97a.8.8 0 0 1-.09.37c-.48.92-1.52 1.77-2.55 2.39c-1.05.63-2.27 1.12-3.26 1.22a.77.77 0 0 1-.64-.24c-.25-.27-.67-.9-1-1.38c-.14-.22-.28-.43-.39-.6c-1.06.19-2.38.3-4.06.3c-1.68 0-3.01-.1-4.07-.3c-.1.17-.24.38-.38.6c-.32.48-.74 1.11-1 1.38a.77.77 0 0 1-.64.24c-.98-.1-2.2-.59-3.25-1.22c-1.04-.62-2.07-1.47-2.55-2.39a.8.8 0 0 1-.09-.37l.02-1c.1-2.27.4-4.6.89-6.56l.15-.56c.18-.6.42-1.31.69-2c.36-.9.82-1.82 1.32-2.4l.1-.09l.11-.08l.49-.25c1.22-.58 2.93-.99 4.11-1.28l.1-.01q.05 0 .1.01c.33.05.61.22.82.38a4 4 0 0 1 .6.58c.26.3.5.67.66 1.02a22.4 22.4 0 0 1 3.57 0a4.64 4.64 0 0 1 1.27-1.6c.21-.16.5-.33.82-.38l.1-.01zM15.98 4.53a2.4 2.4 0 0 0-.36.35q-.1.12-.18.23q.73.13 1.31.31c.96.3 1.68.68 2.1 1.12l.16.19l.08.13a.77.77 0 0 1-1.2.9l-.1-.11l-.14-.13c-.2-.16-.62-.41-1.36-.64c-.95-.29-2.35-.52-4.3-.52s-3.34.23-4.3.52c-.98.3-1.4.64-1.49.77a.77.77 0 0 1-1.23-.92c.38-.52 1.17-1 2.27-1.31q.58-.18 1.31-.31a3.2 3.2 0 0 0-.18-.23a2.4 2.4 0 0 0-.36-.35q-.06-.04-.1-.06c-1.07.15-2.7.72-3.75 1.26c-.3.39-.64 1.06-.96 1.86c-.26.63-.48 1.3-.64 1.85l-.14.51c-.51 2.06-.81 4.56-.86 6.97c.33.51 1.02 1.11 1.89 1.63c.77.46 1.58.8 2.22.94c.16-.23.37-.54.59-.86q.05-.08.1-.17c-1.25-.45-1.93-1.06-2.36-1.71l.64-.43l.64-.43c.42.63 1.51 1.74 6.72 1.74s6.3-1.11 6.72-1.74a.77.77 0 0 1 1.28.85c-.44.66-1.11 1.27-2.37 1.71l.1.17c.21.32.42.64.59.86c.63-.14 1.44-.47 2.21-.94c.87-.52 1.56-1.12 1.89-1.63c-.05-2.41-.35-4.91-.86-6.97l-.14-.51c-.16-.55-.38-1.21-.64-1.85c-.32-.8-.66-1.47-.96-1.86c-1.04-.54-2.68-1.11-3.75-1.26q-.04.02-.1.06M4.21 15.68a.77.77 0 0 1 1.07.21l-1.28.85a.77.77 0 0 1 .21-1.06M8 10.56c.55 0 1.08.24 1.47.66c.39.42.61 1 .61 1.58s-.22 1.16-.61 1.58c-.39.42-.92.66-1.47.66a2 2 0 0 1-1.47-.66a2.34 2.34 0 0 1-.61-1.58c0-.58.22-1.16.61-1.58c.39-.42.92-.66 1.47-.66m8 0c.55 0 1.08.24 1.47.66c.39.42.61 1 .61 1.58s-.22 1.16-.61 1.58c-.39.42-.92.66-1.47.66a2 2 0 0 1-1.47-.66a2.32 2.32 0 0 1-.61-1.58c0-.58.21-1.16.61-1.58c.39-.42.92-.66 1.47-.66"/></g></svg></div>
+                            <a href="https://discord.com/users/yelfyx" target="_blank" class="contact-btn fx-spotlight" data-lang-key="hero_btn_ds"></a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"></path></svg></div>
+                            <a href="#" id="copy-email-hero" class="contact-btn fx-spotlight" data-lang-key="hero_btn_email"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="links" id="links">
+            <div class="container">
+                <div class="links-main-grid">
+                    <a href="https://www.tiktok.com/@yelfyx" target="_blank" class="glass-card main-card reveal-on-load">
+                        <div class="main-card-logo"><svg viewBox="0 0 24 24" fill="currentColor"><g transform="translate(2.4, 2.4) scale(0.8)"><path d="M12.45 1.52c1.12 0 2.25 0 3.38 0c.07 1.33.54 2.7 1.51 3.65c.96.97 2.33 1.41 3.66 1.56v3.52c-1.24-.05-2.49-.3-3.63-.84c-.5-.23-.95-.51-1.4-.81c0 2.55 0 5.11 0 7.65c-.06 1.23-.47 2.45-1.17 3.45c-1.13 1.68-3.09 2.77-5.1 2.8c-1.23.08-2.47-.27-3.53-.9c-1.74-1.04-2.97-2.95-3.15-5q-.05-.65 0-1.3c.15-1.67.98-3.25 2.24-4.34c1.42-1.26 3.43-1.86 5.31-1.5c.02 1.29-.03 2.6-.03 3.88c-.85-.29-1.86-.2-2.61.33c-.56.36-.96.9-1.18 1.53c-.18.45-.14.93-.12 1.41c.21 1.44 1.58 2.64 3.01 2.5c.96 0 1.89-.59 2.39-1.41c.16-.29.35-.58.36-.93c.09-1.56.05-3.12.06-4.7c0-3.52 0-7.05.01-10.56"/></g></svg></div>
+                        <div class="main-card-content">
+                            <h3 data-lang-key="links_tiktok_title"></h3>
+                            <p data-lang-key="links_tiktok_desc"></p>
+                        </div><span class="card-arrow">&rarr;</span>
+                    </a>
+                    <a href="https://t.me/yelfyx" target="_blank" class="glass-card main-card reveal-on-load">
+                        <div class="main-card-logo"><svg viewBox="0 0 24 24" fill="currentColor"><g transform="translate(2.4, 2.4) scale(0.8)"><path d="M20.63.31L1.13 11.55c-1.6.94-1.45 3.32.27 4.03l5.38 2.21v3.96c0 2.17 2.77 3.07 4.05 1.34l2.05-2.77 5.25 2.16c.28.12.57.17.86.17a2.84 2.84 0 002.35-1.11c.6-1.02.7-2.28.28-3.34L23.69 2.6C23.1.72 21.5-.52 19.63.3zm-11.63 21.44v-3.03l1.71.7zm9.96-1.34l-7.2-2.98L18.31 8c.5-.72-.44-1.56-1.1-.99L7.3 15.59l-5.05-2.09L21.75 2.25z"/></g></svg></div>
+                        <div class="main-card-content">
+                            <h3 data-lang-key="links_tg_title"></h3>
+                            <p data-lang-key="links_tg_desc"></p>
+                        </div><span class="card-arrow">&rarr;</span>
+                    </a>
+                </div>
+                <div class="links-secondary-grid">
+                    <a href="https://www.youtube.com/@yelfy" target="_blank" class="glass-card secondary-card reveal-on-load">
+                        <h4 data-lang-key="links_yt"></h4><span class="card-arrow">&rarr;</span>
+                    </a>
+                    <a href="https://xhslink.com/m/3tnuQcbTsnS" target="_blank" class="glass-card secondary-card reveal-on-load">
+                        <h4 data-lang-key="links_xhs"></h4><span class="card-arrow">&rarr;</span>
+                    </a>
+                    <a href="https://www.instagram.com/yelfyx/" target="_blank" class="glass-card secondary-card reveal-on-load">
+                        <h4 data-lang-key="links_ig"></h4><span class="card-arrow">&rarr;</span>
+                    </a>
+                </div>
+                <footer class="links-footer reveal-on-load">
+                    <div class="footer-line"></div>
+                    <p data-lang-key="links_footer"></p>
+                </footer>
+            </div>
+        </section>
+        <section class="soft" id="soft">
+            <div class="container">
+                <h3 class="section-subtitle reveal-on-load" data-lang-key="soft_title1"></h3>
+                <div class="soft-grid">
+                    <div class="soft-card reveal-on-load">
+                        <div class="soft-card-icon"><svg viewBox="0 0 24 24" fill="currentColor"><g transform="translate(2.4, 2.4) scale(0.8)"><path d="M20.97 7.27a.996.996 0 0 0 0-1.41l-2.83-2.83a.996.996 0 0 0-1.41 0l-4.49 4.49l-3.89-3.89c-.78-.78-2.05-.78-2.83 0l-1.9 1.9c-.78.78-.78 2.05 0 2.83l3.89 3.89L3 16.76V21h4.24l4.52-4.52l3.89 3.89c.95.95 2.23.6 2.83 0l1.9-1.9c.78-.78.78-2.05 0-2.83l-3.89-3.89zM5.04 6.94l1.89-1.9L8.2 6.31L7.02 7.5l1.41 1.41l1.19-1.19l1.2 1.2l-1.9 1.9zm11.23 7.44l-1.19 1.19l1.41 1.41l1.19-1.19l1.27 1.27l-1.9 1.9l-3.89-3.89l1.9-1.9zM6.41 19H5v-1.41l9.61-9.61l1.3 1.3l.11.11zm9.61-12.44l1.41-1.41l1.41 1.41l-1.41 1.41z"/></g></svg></div>
+                        <h4 data-lang-key="soft_ae_title"></h4>
+                        <p data-lang-key="soft_ae_desc"></p>
+                    </div>
+                    <div class="soft-card reveal-on-load">
+                        <div class="soft-card-icon"><svg viewBox="0 0 24 24" fill="currentColor"><g transform="translate(2.4, 2.4) scale(0.8)"><path d="M10 14.175L11 12l2.175-1L11 10l-1-2.175L9 10l-2.175 1L9 12l1 2.175ZM10 19l-2.5-5.5L2 11l5.5-2.5L10 3l2.5 5.5L18 11l-5.5 2.5L10 19Zm8 2l-1.25-2.75L14 17l2.75-1.25L18 13l1.25 2.75L22 17l-2.75 1.25L18 21Zm-8-10Z"/></g></svg></div>
+                        <h4 data-lang-key="soft_tp_title"></h4>
+                        <p data-lang-key="soft_tp_desc"></p>
+                    </div>
+                    <div class="soft-card reveal-on-load">
+                        <div class="soft-card-icon"><svg viewBox="0 0 24 24" fill="currentColor"><g transform="translate(2.4, 2.4) scale(0.8)"><path d="M12 22q-.825 0-1.412-.587T10 20v-8q0-.825.588-1.412T12 10h8q.825 0 1.413.588T22 12v8q0 .825-.587 1.413T20 22zm0-2h8v-8h-8zm-6-2V8q0-.825.588-1.412T8 6h10v2H8v10zm-4-4V4q0-.825.588-1.412T4 2h10v2H4v10zm10 6v-8z"/></g></svg></div>
+                        <h4 data-lang-key="soft_ff_title"></h4>
+                        <p data-lang-key="soft_ff_desc"></p>
+                    </div>
+                </div>
+                <h3 class="section-subtitle reveal-on-load" data-lang-key="soft_title2"></h3>
+                <div class="hardware-card reveal-on-load">
+                    <div class="hardware-content">
+                        <h4>Huan 16 Pro</h4>
+                        <ul>
+                            <li><strong><span data-lang-key="soft_cpu"></span>:</strong> AMD Ryzen 9 8940HX</li>
+                            <li><strong><span data-lang-key="soft_gpu"></span>:</strong> NVIDIA GeForce RTX 5060 Laptop GPU (8 GB)</li>
+                            <li><strong><span data-lang-key="soft_ram"></span>:</strong> 32 GB DDR5</li>
+                        </ul>
+                        <a href="https://www.firebatpc.com/products/firebat-as2-gaming-laptop-amd-ryzen9-8940hx" target="_blank" class="specs-button" data-lang-key="soft_button"></a>
+                    </div>
+                    <div class="hardware-image-wrapper"><img src="files/laptop.png" alt="Huan 16 Pro Laptop" class="hardware-image"></div>
+                </div>
+            </div>
+        </section>
+        <section class="contact" id="contact">
+            <canvas id="constellation-canvas"></canvas>
+            <div class="container contact-container">
+                <div class="contact-left reveal-on-load">
+                    <h3 data-lang-key="contact_title"></h3>
+                    <p data-lang-key="contact_desc"></p>
+                    <div class="contact-details">
+                        <div class="contact-item-text">
+                            <span data-lang-key="contact_email_label"></span>
+                            <a href="#" id="copy-email-contact">yelfymail@gmail.com</a>
+                        </div>
+                        <div class="contact-item-text">
+                            <span data-lang-key="contact_tg_label"></span>
+                            <a href="https://t.me/yelfy" target="_blank">@yelfy</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-right reveal-on-load">
+                    <form id="contact-form" class="glass-card" action="https://formsubmit.co/yelfymail@gmail.com" method="POST">
+                        <div class="form-group">
+                            <label for="name" data-lang-key="form_name"></label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" data-lang-key="form_email"></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" data-lang-key="form_message"></label>
+                            <textarea id="message" name="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit-btn" data-lang-key="form_button"></button>
+                    </form>
+                    <div id="success-message" class="hidden glass-card">
+                        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"></path></svg>
+                        <p id="success-text"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer-main">
+        <div class="container footer-container">
+            <div class="footer-left">
+                <p data-lang-key="footer_copyright"></p>
+            </div>
+            <div class="footer-right">
+                <nav class="footer-nav">
+                    <a href="#home" data-lang-key="nav_home"></a>
+                    <a href="#links" data-lang-key="nav_links"></a>
+                    <a href="#soft" data-lang-key="nav_soft"></a>
+                    <a href="#contact" data-lang-key="nav_contact"></a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+    <script>
+        const canvas = document.getElementById('constellation-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        let dots = [];
+        for (let i = 0; i < 50; i++) {
+            dots.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.5,
+                vy: (Math.random() - 0.5) * 0.5,
+                radius: 2
+            });
+        }
+        let mouse = {
+            x: null,
+            y: null
+        };
+        const contactSection = document.querySelector('.contact');
+        contactSection.addEventListener('mousemove', e => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+        contactSection.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            dots.forEach(dot => {
+                ctx.beginPath();
+                ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255,255,255,0.5)';
+                ctx.fill();
+                dot.x += dot.vx;
+                dot.y += dot.vy;
+                if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
+                if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
+                let distToMouse = Math.sqrt((dot.x - mouse.x) ** 2 + (dot.y - mouse.y) ** 2);
+                if (distToMouse < 200) {
+                    dots.forEach(otherDot => {
+                        let distToOther = Math.sqrt((dot.x - otherDot.x) ** 2 + (dot.y - otherDot.y) ** 2);
+                        if (distToOther < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(dot.x, dot.y);
+                            ctx.lineTo(otherDot.x, otherDot.y);
+                            ctx.strokeStyle = `rgba(255,255,255, ${1 - distToOther / 100})`;
+                            ctx.stroke();
+                        }
+                    });
+                }
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+    </script>
+    <script>
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.main-nav a, .footer-nav a');
+        let userHasScrolled = true;
+        const observer = new IntersectionObserver((entries) => {
+            if (userHasScrolled) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === `#${entry.target.id}`) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }
+        }, {
+            threshold: 0.3,
+            rootMargin: "-100px 0px 0px 0px"
+        });
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        navLinks.forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                userHasScrolled = false;
+                navLinks.forEach(link => link.classList.remove('active'));
+                document.querySelectorAll(`.main-nav a[href="${this.getAttribute('href')}"], .footer-nav a[href="${this.getAttribute('href')}"]`).forEach(l => l.classList.add('active'));
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                setTimeout(() => {
+                    userHasScrolled = true;
+                }, 1000);
+            });
+        });
+    </script>
+    <script>
+        const heroShapesContainer = document.querySelector('.hero .shape-container');
+        if (heroShapesContainer) {
+            for (let i = 0; i < 15; i++) {
+                let shape = document.createElement('div');
+                shape.className = 'shape';
+                const size = Math.random() * 40 + 10;
+                shape.style.width = `${size}px`;
+                shape.style.height = `${size}px`;
+                shape.style.top = `${Math.random() * 100}%`;
+                shape.style.left = `${Math.random() * 100}%`;
+                shape.style.animationDelay = `${Math.random() * 20}s`;
+                shape.style.animationDuration = `${Math.random() * 40 + 20}s`;
+                const type = Math.random();
+                if (type > 0.66) {
+                    shape.style.borderRadius = '50%';
+                } else if (type > 0.33) {
+                    shape.style.clipPath = 'polygon(50% 0%, 0% 100%, 100% 100%)';
+                }
+                heroShapesContainer.appendChild(shape);
+            }
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailAddress = 'yelfymail@gmail.com';
+
+            function setupCopyOnClick(buttonId) {
+                const button = document.getElementById(buttonId);
+                if (!button) return;
+
+                const originalText = button.textContent;
+
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    navigator.clipboard.writeText(emailAddress).then(() => {
+                        const currentLang = localStorage.getItem('language') || 'ru';
+                        button.textContent = currentLang === 'ru' ? 'Скопировано!' : 'Copied!';
+                        setTimeout(() => {
+                           const key = button.getAttribute('data-lang-key');
+                           const lang = localStorage.getItem('language') || 'ru';
+                           // This assumes translations object is accessible here, which it isn't.
+                           // For now, we revert to originalText, but a better solution would be to re-translate.
+                           button.textContent = originalText;
+                        }, 2000);
+
+                    }).catch(err => {
+                        console.error('Ошибка копирования: ', err);
+                        const currentLang = localStorage.getItem('language') || 'ru';
+                        button.textContent = currentLang === 'ru' ? 'Ошибка!' : 'Error!';
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                        }, 2000);
+                    });
+                });
+            }
+
+            setupCopyOnClick('copy-email-hero');
+            setupCopyOnClick('copy-email-contact');
+        });
+    </script>
+    
+    <script src="lang.js"></script>
+
+</body>
+</html>
