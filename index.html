@@ -23,10 +23,10 @@
             <div class="logo">yelfyx.com</div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#home" data-lang-key="nav_home">Главная</a></li>
-                    <li><a href="#links" data-lang-key="nav_links">Ссылки</a></li>
-                    <li><a href="#soft" data-lang-key="nav_soft">Инструменты</a></li>
-                    <li><a href="#contact" data-lang-key="nav_contact">Контакт</a></li>
+                    <li><a href="#home" data-lang-key="nav_home"></a></li>
+                    <li><a href="#links" data-lang-key="nav_links"></a></li>
+                    <li><a href="#soft" data-lang-key="nav_soft"></a></li>
+                    <li><a href="#contact" data-lang-key="nav_contact"></a></li>
                 </ul>
             </nav>
             <div class="header-controls">
@@ -175,7 +175,8 @@
                     </div>
                 </div>
                 <div class="contact-right reveal-on-load">
-                    <form id="contact-form" class="glass-card" action="https://formsubmit.co/yelfymail@gmail.com" method="POST">
+                    <form id="contact-form" name="contact" class="glass-card" method="POST" data-netlify="true">
+                        <input type="hidden" name="form-name" value="contact" />
                         <div class="form-group">
                             <label for="name" data-lang-key="form_name"></label>
                             <input type="text" id="name" name="name" required>
@@ -192,7 +193,7 @@
                     </form>
                     <div id="success-message" class="hidden glass-card">
                         <svg viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"></path></svg>
-                        <p id="success-text"></p>
+                        <p id="success-text" data-lang-key="form_success_new"></p>
                     </div>
                 </div>
             </div>
@@ -223,17 +224,25 @@
     <script>
         const canvas = document.getElementById('constellation-canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
         let dots = [];
-        for (let i = 0; i < 50; i++) {
-            dots.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                radius: 2
-            });
+
+        function setupCanvas() {
+            const dpr = window.devicePixelRatio || 1;
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width * dpr;
+            canvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+            dots = [];
+            const numDots = window.innerWidth < 768 ? 35 : 50;
+            for (let i = 0; i < numDots; i++) {
+                dots.push({
+                    x: Math.random() * rect.width,
+                    y: Math.random() * rect.height,
+                    vx: (Math.random() - 0.5) * 0.3,
+                    vy: (Math.random() - 0.5) * 0.3,
+                    radius: 1.5
+                });
+            }
         }
         let mouse = {
             x: null,
@@ -252,31 +261,37 @@
 
         function draw() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const cssWidth = canvas.clientWidth;
+            const cssHeight = canvas.clientHeight;
             dots.forEach(dot => {
                 ctx.beginPath();
                 ctx.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255,255,255,0.5)';
+                ctx.fillStyle = 'rgba(255,255,255,0.7)';
                 ctx.fill();
                 dot.x += dot.vx;
                 dot.y += dot.vy;
-                if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
-                if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
-                let distToMouse = Math.sqrt((dot.x - mouse.x) ** 2 + (dot.y - mouse.y) ** 2);
-                if (distToMouse < 200) {
-                    dots.forEach(otherDot => {
-                        let distToOther = Math.sqrt((dot.x - otherDot.x) ** 2 + (dot.y - otherDot.y) ** 2);
-                        if (distToOther < 100) {
-                            ctx.beginPath();
-                            ctx.moveTo(dot.x, dot.y);
-                            ctx.lineTo(otherDot.x, otherDot.y);
-                            ctx.strokeStyle = `rgba(255,255,255, ${1 - distToOther / 100})`;
-                            ctx.stroke();
-                        }
-                    });
+                if (dot.x < 0 || dot.x > cssWidth) dot.vx *= -1;
+                if (dot.y < 0 || dot.y > cssHeight) dot.vy *= -1;
+                if (mouse.x !== null) {
+                    let distToMouse = Math.sqrt((dot.x - mouse.x) ** 2 + (dot.y - mouse.y) ** 2);
+                    if (distToMouse < 200) {
+                        dots.forEach(otherDot => {
+                            let distToOther = Math.sqrt((dot.x - otherDot.x) ** 2 + (dot.y - otherDot.y) ** 2);
+                            if (distToOther < 100) {
+                                ctx.beginPath();
+                                ctx.moveTo(dot.x, dot.y);
+                                ctx.lineTo(otherDot.x, otherDot.y);
+                                ctx.strokeStyle = `rgba(255,255,255, ${1 - distToOther / 100})`;
+                                ctx.stroke();
+                            }
+                        });
+                    }
                 }
             });
             requestAnimationFrame(draw);
         }
+        setupCanvas();
+        window.addEventListener('resize', setupCanvas);
         draw();
     </script>
     <script>
@@ -349,39 +364,30 @@
             function setupCopyOnClick(buttonId) {
                 const button = document.getElementById(buttonId);
                 if (!button) return;
-
-                const originalText = button.textContent;
+                const originalKey = button.getAttribute('data-lang-key');
 
                 button.addEventListener('click', function(event) {
                     event.preventDefault();
-
                     navigator.clipboard.writeText(emailAddress).then(() => {
                         const currentLang = localStorage.getItem('language') || 'ru';
                         button.textContent = currentLang === 'ru' ? 'Скопировано!' : 'Copied!';
+                        button.removeAttribute('data-lang-key');
                         setTimeout(() => {
-                           const key = button.getAttribute('data-lang-key');
-                           const lang = localStorage.getItem('language') || 'ru';
-                           // This assumes translations object is accessible here, which it isn't.
-                           // For now, we revert to originalText, but a better solution would be to re-translate.
-                           button.textContent = originalText;
+                            button.setAttribute('data-lang-key', originalKey);
+                            const langData = translations[currentLang];
+                            if (langData && langData[originalKey]) {
+                                button.textContent = langData[originalKey];
+                            }
                         }, 2000);
-
                     }).catch(err => {
                         console.error('Ошибка копирования: ', err);
-                        const currentLang = localStorage.getItem('language') || 'ru';
-                        button.textContent = currentLang === 'ru' ? 'Ошибка!' : 'Error!';
-                        setTimeout(() => {
-                            button.textContent = originalText;
-                        }, 2000);
                     });
                 });
             }
-
             setupCopyOnClick('copy-email-hero');
             setupCopyOnClick('copy-email-contact');
         });
     </script>
-    
     <script src="lang.js"></script>
 
 </body>

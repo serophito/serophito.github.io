@@ -56,8 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
             form_email: 'Ваше Email',
             form_message: 'Ваше Сообщение',
             form_button: 'Отправить сообщение',
-            form_success: (seconds) => `Спасибо!<br>Через <strong>${seconds}</strong> перенаправитесь на другую страницу для подтверждения* отправки сообщения.<br><br>*Нужно будет пройти капчу`,
-            form_redirecting: 'Перенаправляем...',
+            form_success_new: 'Сообщение успешно отправлено!',
             footer_copyright: '© 2025 Yelfy. Все права защищены.'
         },
         en: {
@@ -115,8 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
             form_email: 'Your Email',
             form_message: 'Your Message',
             form_button: 'Send Message',
-            form_success: (seconds) => `Thank you!<br>You will be redirected in <strong>${seconds}</strong> seconds to another page to confirm* sending the message.<br><br>*You will need to pass a captcha`,
-            form_redirecting: 'Redirecting...',
+            form_success_new: 'Message sent successfully!',
             footer_copyright: '© 2025 Yelfy. All rights reserved.'
         }
     };
@@ -124,16 +122,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const langRuBtn = document.getElementById('lang-ru');
     const langEnBtn = document.getElementById('lang-en');
     const allLangElements = document.querySelectorAll('[data-lang-key]');
-
     const part1Element = document.getElementById('anim-part1');
     const part2Element = document.getElementById('anim-part2');
     let phrases = [];
     let currentIndex = 0;
     let animationInterval;
-
-    const contactForm = document.getElementById('contact-form');
-    const successMessageContainer = document.getElementById('success-message');
-    const successTextElement = document.getElementById('success-text');
 
     const setLanguage = (lang) => {
         allLangElements.forEach(element => {
@@ -142,11 +135,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 element.innerHTML = translations[lang][key];
             }
         });
-
         phrases = translations[lang].anim_phrases;
         currentIndex = 0;
         startTextAnimation();
-
         if (lang === 'ru') {
             langRuBtn.classList.add('active');
             langEnBtn.classList.remove('active');
@@ -175,72 +166,61 @@ document.addEventListener('DOMContentLoaded', function() {
     function startTextAnimation() {
         if (!part1Element || !part2Element) return;
         clearInterval(animationInterval);
-        part1Element.textContent = phrases[0].p1;
-        part2Element.textContent = phrases[0].p2;
-        part1Element.classList.add('is-visible');
-        part2Element.classList.add('is-visible');
-        animationInterval = setInterval(updateText, 6000);
+        if (phrases.length > 0) {
+            part1Element.textContent = phrases[0].p1;
+            part2Element.textContent = phrases[0].p2;
+            part1Element.classList.add('is-visible');
+            part2Element.classList.add('is-visible');
+            animationInterval = setInterval(updateText, 6000);
+        }
     }
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            contactForm.classList.add('hidden');
-            successMessageContainer.classList.remove('hidden');
-            setTimeout(() => {
-                contactForm.submit();
-            }, 5000);
-            setTimeout(() => {
-                successMessageContainer.classList.add('hidden');
-                setTimeout(() => {
-                    contactForm.classList.remove('hidden');
-                    contactForm.reset();
-                }, 500);
-            }, 10000);
-            let countdownSeconds = 5;
-            const currentLang = localStorage.getItem('language') || 'ru';
-            const updateVisualCountdown = () => {
-                successTextElement.innerHTML = translations[currentLang].form_success(countdownSeconds);
-            };
-            updateVisualCountdown();
-            const countdownInterval = setInterval(() => {
-                countdownSeconds--;
-                if (countdownSeconds >= 0) {
-                    updateVisualCountdown();
-                } else {
-                    clearInterval(countdownInterval);
-                    successTextElement.textContent = translations[currentLang].form_redirecting;
-                }
-            }, 1000);
-        });
-    }
-
     langRuBtn.addEventListener('click', () => setLanguage('ru'));
     langEnBtn.addEventListener('click', () => setLanguage('en'));
-
     const savedLang = localStorage.getItem('language');
     const browserLang = navigator.language.split('-')[0];
     const initialLang = savedLang || (browserLang === 'ru' ? 'ru' : 'en');
-    
-    phrases = translations[initialLang].anim_phrases;
-    if (part1Element && part2Element && phrases.length > 0) {
-       part1Element.textContent = phrases[0].p1;
-       part2Element.textContent = phrases[0].p2;
-    }
-    
     setLanguage(initialLang);
-
     const burgerMenu = document.getElementById('mobile-menu');
     const mainNav = document.querySelector('.main-nav');
     const navLinks = mainNav.querySelectorAll('a');
-
     burgerMenu.addEventListener('click', () => {
         document.body.classList.toggle('nav-open');
     });
-
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             document.body.classList.remove('nav-open');
         });
     });
+
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const successMessage = document.getElementById('success-message');
+        const handleSubmit = (event) => {
+            event.preventDefault();
+            const myForm = event.target;
+            const formData = new FormData(myForm);
+            fetch("/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    },
+                    body: new URLSearchParams(formData).toString(),
+                })
+                .then(() => {
+                    contactForm.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    setTimeout(() => {
+                        successMessage.classList.add('hidden');
+                        setTimeout(() => {
+                            contactForm.classList.remove('hidden');
+                            contactForm.reset();
+                        }, 600);
+                    }, 5000);
+                })
+                .catch((error) => {
+                    alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
+                });
+        };
+        contactForm.addEventListener("submit", handleSubmit);
+    }
 });
